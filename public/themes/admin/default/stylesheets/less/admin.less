@@ -1,0 +1,84 @@
+.navbar-admin {
+    background-color: @fourum-blue;
+
+    .nav > li > a:hover, .nav > li > a:focus {
+        background-color: @fourum-hover-blue;
+    }
+
+    .caret {
+        border-top-color: white;
+        border-bottom-color: white;
+    }
+
+    a {
+        color: @fourum-white;
+
+        &:hover {
+            color: @fourum-grey;
+        }
+    }
+}
+
+.small-nav {
+    list-style:none;
+    padding:0;
+    margin:0;
+
+    li {
+        float: left;
+        padding-right:10px;
+    }
+}
+
+.fourum-admin-sidenav {
+    background-color: @fourum-light-blue;
+    border-radius: 5px;
+    width: 263px;
+
+    &.affix {
+        margin-top: -65px;
+    }
+
+    li {
+        a {
+            &:hover {
+                background-color: @fourum-hover-light-blue;
+            }
+        }
+
+        &:first-child {
+            a {
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+            }
+        }
+
+        &:last-child {
+            a {
+                border-bottom-left-radius: 5px;
+                border-bottom-right-radius: 5px;
+            }
+        }
+
+        &.active {
+            a {
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+.buffer-reset {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.buffer {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.buffer-lg {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

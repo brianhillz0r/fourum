@@ -1,0 +1,28 @@
+current:
+    title: "Theme"
+    description: "The current theme."
+    value: "default"
+    options: @themes
+    type: "select"
+
+scheme:
+    title: "Colour Scheme"
+    description: "The colour scheme of the current theme."
+    value: "default"
+    options: @schemes
+    type: "select"
+
+
+admin_current:
+    title: "Admin Theme"
+    description: "The current Admin theme."
+    value: "default"
+    options: @admin.themes
+    type: "select"
+
+admin_scheme:
+    title: "Admin Colour Scheme"
+    description: "The colour scheme of the current Admin theme."
+    value: "default"
+    options: @admin.schemes
+    type: "select"

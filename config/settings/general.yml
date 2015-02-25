@@ -1,0 +1,17 @@
+name:
+    title: "Forum Name"
+    description: "Name of the forum."
+    value: "Fourum"
+    type: "text"
+
+url:
+    title: "Forum URL"
+    description: "The URL of the forum."
+    value: "localhost"
+    type: "text"
+
+email:
+    title: "Admin Email"
+    description: "Email address of the administrator."
+    value: "example@example.com"
+    type: "text"

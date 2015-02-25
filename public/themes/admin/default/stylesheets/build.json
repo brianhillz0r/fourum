@@ -1,0 +1,10 @@
+{
+    "css/admin.css": [
+        "less/schemes/{scheme}.less",
+        "less/admin.less"
+    ],
+
+    "css/bootstrap.css": [
+        "less/bootstrap/bootstrap.less"
+    ]
+}
