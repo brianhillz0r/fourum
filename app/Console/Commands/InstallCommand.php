@@ -173,6 +173,16 @@ class InstallCommand extends Command
 	private function loadTableClosures()
 	{
 		return array(
+			'sessions' => function ($t) {
+				$t->string('id')->unique();
+				$t->text('payload');
+				$t->integer('last_activity');
+			},
+			'password_resets' => function ($table) {
+				$table->string('email')->index();
+				$table->string('token')->index();
+				$table->timestamp('created_at');
+			},
 			'users' => function($table) {
 				$table->engine = "InnoDb";
 

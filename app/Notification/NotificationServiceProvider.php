@@ -5,17 +5,13 @@ namespace Fourum\Notification;
 use Fourum\Notification\Eloquent\NotificationRepository;
 use Fourum\Notification\Type\Eloquent\TypeRepository;
 use Fourum\Notification\Type\TypeRepositoryInterface;
-use Illuminate\Support\ServiceProvider;
+use Fourum\Support\ServiceProvider;
 
 class NotificationServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        $types = $this->app->make(TypeRepositoryInterface::class);
-
-        if (! $types->hasType(Mention::TYPE)) {
-            $types->createAndSave(['name' => Mention::TYPE]);
-        }
+        $this->setupNotifications(Mention::class);
     }
 
     /**

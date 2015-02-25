@@ -281,7 +281,7 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:fourum/message.git",
-                "reference": "16ec33a76d5cadf376594a66ddb37951cb1b5be5"
+                "reference": "cece3cea3b86319b5772b6e73c48cf86a493b016"
             },
             "require": {
                 "fourum/support": "dev-master"
@@ -302,7 +302,7 @@
                 }
             ],
             "description": "Messaging for Fourum",
-            "time": "2015-02-25 21:50:38"
+            "time": "2015-02-25 22:31:01"
         },
         {
             "name": "fourum/support",
