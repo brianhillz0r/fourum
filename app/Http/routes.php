@@ -126,4 +126,11 @@ Route::group(array('prefix' => 'admin', 'before' => 'beforeFilter', 'after' => '
      */
     Route::get('/reports', 'Admin\ReportsController@index');
     Route::get('/reports/mark-read/{id}', 'Admin\ReportsController@markRead');
+
+    /**
+     * Packages Routes
+     */
+    Route::get('/packages', 'Admin\PackagesController@index');
+    Route::get('/packages/enable/{package}', 'Admin\PackagesController@enable');
+    Route::get('/packages/disable/{package}', 'Admin\PackagesController@disable');
 });

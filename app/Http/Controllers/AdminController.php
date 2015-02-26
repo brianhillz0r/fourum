@@ -40,7 +40,8 @@ class AdminController extends Controller
                 new LinkItem('groups', '/admin/groups'),
                 new LinkItem('themes', '/admin/themes'),
                 new LinkItem('rules', '/admin/rules'),
-                new LinkItem('reports', '/admin/reports')
+                new LinkItem('reports', '/admin/reports'),
+                new LinkItem('packages', '/admin/packages')
             ));
 
             Event::fire('admin.menu.top.created', array($menu));

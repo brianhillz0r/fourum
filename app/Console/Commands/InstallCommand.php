@@ -407,6 +407,11 @@ class InstallCommand extends Command
 
 				$table->timestamps();
 				$table->softDeletes();
+			},
+			'packages_enabled' => function ($table) {
+				$table->engine = "InnoDb";
+
+				$table->string('name', 255)->unique();
 			}
 		);
 	}

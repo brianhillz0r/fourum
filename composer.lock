@@ -281,7 +281,7 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:fourum/message.git",
-                "reference": "cece3cea3b86319b5772b6e73c48cf86a493b016"
+                "reference": "edd4b664bbd8300e7ab9de03760ed80ac84506a9"
             },
             "require": {
                 "fourum/support": "dev-master"
@@ -302,7 +302,7 @@
                 }
             ],
             "description": "Messaging for Fourum",
-            "time": "2015-02-25 22:31:01"
+            "time": "2015-02-26 21:45:03"
         },
         {
             "name": "fourum/support",
@@ -310,7 +310,7 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:fourum/support.git",
-                "reference": "8bd125eb7367a7f908f58223a79f20b8ef097833"
+                "reference": "b5fd0c285ef2e100dc3b54292b1e0bd45fedbf31"
             },
             "require": {
                 "illuminate/support": "~5.0"
@@ -328,7 +328,7 @@
                 }
             ],
             "description": "Supporting classes for Fourum and Fourum packages.",
-            "time": "2015-02-25 21:52:35"
+            "time": "2015-02-26 21:39:22"
         },
         {
             "name": "illuminate/html",

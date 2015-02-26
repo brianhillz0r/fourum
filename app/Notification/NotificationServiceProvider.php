@@ -31,4 +31,17 @@ class NotificationServiceProvider extends ServiceProvider
             return $app->make(TypeRepository::class);
         });
     }
+
+    public function getPackageName()
+    {
+    }
+
+    public function isPackage()
+    {
+        return false;
+    }
+
+    public function getPackageDescription()
+    {
+    }
 }
