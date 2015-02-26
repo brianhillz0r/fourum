@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         'Fourum\Console\Commands\Inspire',
-        'Fourum\Console\Commands\InstallCommand'
+        'Fourum\Console\Commands\InstallCommand',
+        'Fourum\Console\Commands\PackageMakeCommand'
     ];
 
     /**
