@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>{{ forum_name() }}</title>
+        <title>{{ isset($title) ? $title . ' |' : '' }} {{ forum_name() }}</title>
 
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" href="{{ theme()->css('bootstrap.css') }}">

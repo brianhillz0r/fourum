@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Fourum | Admin</title>
+        <title>Fourum | <?= isset($title) ? $title : 'Admin' ?></title>
 
         <link rel="stylesheet" href="<?= theme()->css('bootstrap.css') ?>">
         <link rel="stylesheet" href="<?= theme()->css('admin.css') ?>">

@@ -24,6 +24,7 @@ class SettingsController extends AdminController
         parent::__construct($settings);
 
         $this->settings = $settings;
+        $this->setTitle('Settings');
     }
 
     /**
@@ -44,6 +45,7 @@ class SettingsController extends AdminController
      */
     public function view($namespace)
     {
+        $this->addTitle(ucwords($namespace));
         $settings = $this->settings->getByNamespace($namespace);
         return view('settings.view', ['settings' => $settings, 'namespace' => $namespace]);
     }

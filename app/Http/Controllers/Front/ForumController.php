@@ -8,11 +8,13 @@ use Fourum\Http\Controllers\FrontController;
 class ForumController extends FrontController
 {
     /**
-     * @param ForumRepositoryInterface $forum
+     * @param ForumRepositoryInterface $forums
      * @param int $id
      */
-    public function view(ForumRepositoryInterface $forum, $id)
+    public function view(ForumRepositoryInterface $forums, $id)
     {
-        return $this->render('forum.view', ['forum' => $forum->get($id)]);
+        $forum = $forums->get($id);
+        $this->setTitle($forum->getTitle());
+        return $this->render('forum.view', ['forum' => $forum]);
     }
 }

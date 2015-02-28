@@ -10,6 +10,7 @@ use Illuminate\Foundation\Bus\DispatchesCommands;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
 
 abstract class Controller extends BaseController
 {
@@ -43,5 +44,22 @@ abstract class Controller extends BaseController
     public function getUser()
     {
         return Auth::user();
+    }
+
+    /**
+     * @param string $title
+     */
+    public function setTitle($title)
+    {
+        View::share('title', $title);
+    }
+
+    /**
+     * @param string $title
+     */
+    public function addTitle($title)
+    {
+        $current = View::shared('title');
+        View::share('title', $current . ' | ' . $title);
     }
 }

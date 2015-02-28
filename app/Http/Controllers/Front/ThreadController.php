@@ -67,6 +67,8 @@ class ThreadController extends FrontController
         $data['forum'] = $thread->getForum();
         $data['highlight'] = $request->get('highlight');
 
+        $this->setTitle($thread->getTitle());
+
         return $this->render('thread.view', $data);
     }
 
