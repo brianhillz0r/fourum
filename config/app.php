@@ -167,6 +167,7 @@ return [
 		 * Package Service Providers
 		 */
 		'Fourum\Message\MessageServiceProvider',
+		'Fourum\Warning\WarningServiceProvider'
 	],
 
 	/*
