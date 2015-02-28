@@ -20,15 +20,22 @@ class TabItem implements ItemInterface
     protected $data;
 
     /**
+     * @var string
+     */
+    protected $target;
+
+    /**
      * @param string $name
+     * @param $target
      * @param string $viewPath
      * @param array $data
      */
-    public function __construct($name, $viewPath, array $data = [])
+    public function __construct($name, $target, $viewPath, array $data = [])
     {
         $this->name = $name;
         $this->viewPath = $viewPath;
         $this->data = $data;
+        $this->target = $target;
     }
 
     /**
@@ -44,7 +51,7 @@ class TabItem implements ItemInterface
      */
     public function getTarget()
     {
-        return $this->viewPath;
+        return $this->target;
     }
 
     /**
@@ -53,5 +60,13 @@ class TabItem implements ItemInterface
     public function getData()
     {
         return $this->data;
+    }
+
+    /**
+     * @return string
+     */
+    public function getViewPath()
+    {
+        return $this->viewPath;
     }
 }
