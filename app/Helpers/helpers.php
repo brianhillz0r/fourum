@@ -72,6 +72,15 @@ if (! function_exists('setting')) {
     }
 }
 
+if (! function_exists('settings')) {
+    /**
+     * @return Fourum\Setting\Manager
+     */
+    function settings() {
+        return app('settings');
+    }
+}
+
 if (! function_exists('permissions')) {
     /**
      * @return Fourum\Permission\Checker\CheckerInterface

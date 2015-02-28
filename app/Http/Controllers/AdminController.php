@@ -63,21 +63,6 @@ class AdminController extends Controller
         });
 
         /**
-         * Settings Sidebar
-         */
-        View::composer('settings.sidebar', function($view) {
-            $menu = new SimpleMenu(array(
-                new LinkItem('general', '/admin/settings'),
-                new LinkItem('themes', '/admin/settings/themes'),
-                new LinkItem('suspensions &amp; banning', '/admin/settings/banning')
-            ));
-
-            Event::fire('admin.settings.sidebar.created', array($menu));
-
-            $view->with('menu', $menu);
-        });
-
-        /**
          * Settings Form
          */
         View::composer('settings.form', function($view) {

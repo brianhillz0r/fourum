@@ -154,4 +154,18 @@ class SettingRepository implements SettingRepositoryInterface, SaveableRepositor
 
         return $normalisedSettings;
     }
+
+    /**
+     * @return array
+     */
+    public function getAllNamespaces()
+    {
+        $namespaces = [];
+
+        foreach (Setting::all() as $setting) {
+            $namespaces[] = $setting->namespace;
+        }
+
+        return array_unique($namespaces);
+    }
 }

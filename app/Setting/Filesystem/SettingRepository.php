@@ -189,4 +189,22 @@ class SettingRepository implements SettingRepositoryInterface
     {
         return $this->parser->parse($this->file->get($filePath));
     }
+
+    /**
+     * @return array
+     */
+    public function getAllNamespaces()
+    {
+        $namespaces = [];
+
+        foreach ($this->settingDirectories as $dir) {
+            $namespaceFiles = $this->file->files($dir);
+
+            foreach ($namespaceFiles as $file) {
+                $namespaces[] = $this->getFilenameFromPath($file);
+            }
+        }
+
+        return $namespaces;
+    }
 }

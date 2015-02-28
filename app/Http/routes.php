@@ -78,8 +78,7 @@ Route::group(array('prefix' => 'admin', 'before' => 'beforeFilter', 'after' => '
      * Settings Routes
      */
     Route::get('/settings', 'Admin\SettingsController@index');
-    Route::get('/settings/banning', 'Admin\SettingsController@banning');
-    Route::get('/settings/themes', 'Admin\SettingsController@themes');
+    Route::get('/settings/{namespace}', 'Admin\SettingsController@view');
     Route::post('/settings', 'Admin\SettingsController@save');
 
     /**

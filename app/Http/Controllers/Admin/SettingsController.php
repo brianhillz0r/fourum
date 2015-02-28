@@ -27,36 +27,25 @@ class SettingsController extends AdminController
     }
 
     /**
-     * General Settings.15
+     * General Settings
      */
     public function index()
     {
         $settings = $this->settings->getByNamespace('general');
 
         $data['settings'] = $settings;
+        $data['namespace'] = 'general';
 
-        return view('settings.general', $data);
+        return view('settings.view', $data);
     }
 
     /**
-     * Banning settings.
+     * @param $namespace
      */
-    public function banning()
+    public function view($namespace)
     {
-        $settings = $this->settings->getByNamespace('banning');
-
-        $data['settings'] = $settings;
-
-        return view('settings.banning', $data);
-    }
-
-    public function themes()
-    {
-        $settings = $this->settings->getByNamespace('theme');
-
-        $data['settings'] = $settings;
-
-        return view('settings.themes', $data);
+        $settings = $this->settings->getByNamespace($namespace);
+        return view('settings.view', ['settings' => $settings, 'namespace' => $namespace]);
     }
 
     /**

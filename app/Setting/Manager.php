@@ -157,4 +157,15 @@ class Manager
 
         return $this->file->get($name);
     }
+
+    /**
+     * @return array
+     */
+    public function getAllNamespaces()
+    {
+        $dbNamespaces = $this->db->getAllNamespaces();
+        $fileNamespaces = $this->file->getAllNamespaces();
+
+        return array_unique(array_merge($fileNamespaces, $dbNamespaces));
+    }
 }

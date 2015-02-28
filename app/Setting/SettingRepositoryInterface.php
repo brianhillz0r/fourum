@@ -14,6 +14,11 @@ interface SettingRepositoryInterface extends RepositoryInterface
     public function get($name);
 
     /**
+     * @return array
+     */
+    public function getAllNamespaces();
+
+    /**
      * @param string $namespace
      * @param string $name
      * @return SettingInterface
