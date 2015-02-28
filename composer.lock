@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4aa7fa9442b25ee7c02c3b0d559115c2",
+    "hash": "d7de253a800d51b0f77278330339351a",
     "packages": [
         {
             "name": "baum/baum",
@@ -310,7 +310,7 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:fourum/support.git",
-                "reference": "b5fd0c285ef2e100dc3b54292b1e0bd45fedbf31"
+                "reference": "5323bb63ecd03740c32a7c3cc2b2e3ec5a46a16f"
             },
             "require": {
                 "illuminate/support": "~5.0"
@@ -328,7 +328,7 @@
                 }
             ],
             "description": "Supporting classes for Fourum and Fourum packages.",
-            "time": "2015-02-26 21:39:22"
+            "time": "2015-02-28 16:53:45"
         },
         {
             "name": "illuminate/html",
