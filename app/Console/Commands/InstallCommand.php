@@ -1,5 +1,6 @@
 <?php namespace Fourum\Console\Commands;
 
+use Fourum\Model\PackagesEnabled;
 use Illuminate\Console\Command;
 
 use Carbon\Carbon;
@@ -71,6 +72,13 @@ class InstallCommand extends Command
 		$this->bootstrapForums();
 		$this->bootstrapGroups();
 		$this->bootstrapUsers();
+		$this->bootstrapPackages();
+	}
+
+	private function bootstrapPackages()
+	{
+		PackagesEnabled::add('Fourum\Message\MessageServiceProvider');
+		PackagesEnabled::add('Fourum\Warning\WarningServiceProvider');
 	}
 
 	private function bootstrapUsers()
@@ -412,6 +420,20 @@ class InstallCommand extends Command
 				$table->engine = "InnoDb";
 
 				$table->string('name', 255)->unique();
+			},
+			'effects' => function ($table) {
+				$table->engine = "InnoDb";
+
+				$table->increments('id')->unsigned();
+				$table->integer('foreign_id')->unsigned()->index();
+				$table->string('foreign_key', 25)->index();
+				$table->string('effect', 100);
+				$table->string('permission', 25)->index();
+				$table->tinyInteger('permission_value')->unsigned();
+				$table->timestamp('expires');
+
+				$table->timestamps();
+				$table->unique(['foreign_id', 'foreign_key', 'permission']);
 			}
 		);
 	}
@@ -428,6 +450,9 @@ class InstallCommand extends Command
 		foreach ($tableNames as $table) {
 			Schema::dropIfExists($table);
 		}
+
+		Schema::dropIfExists('messages');
+		Schema::dropIfExists('warnings');
 	}
 
 	/**
