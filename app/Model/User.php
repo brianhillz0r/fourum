@@ -3,6 +3,7 @@
 namespace Fourum\Model;
 
 use Carbon\Carbon;
+use Fourum\Effect\EffectableInterface;
 use Fourum\Notification\NotifiableInterface;
 use Fourum\Permission\PermissibleInterface;
 use Fourum\User\UserInterface;
@@ -20,7 +21,7 @@ use Illuminate\Support\Facades\Hash;
  * @property Carbon birthdate
  * @property int id
  */
-class User extends Model implements AuthenticatableContract, CanResetPasswordContract, UserInterface, PermissibleInterface, NotifiableInterface
+class User extends Model implements AuthenticatableContract, CanResetPasswordContract, UserInterface, PermissibleInterface, NotifiableInterface, EffectableInterface
 {
     use Authenticatable, CanResetPassword;
 

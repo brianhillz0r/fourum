@@ -28,8 +28,15 @@ class UserChecker extends Checker
             return true;
         }
 
+        // effects overrule everything else
+        $effects = $this->effects->getEffectsForPermissible($permissible, $name);
+        if (! $effects->isEmpty()) {
+            $effect = $effects->first();
+            return (bool) $effect->getPermissionValue();
+        }
+
         $groups = $permissible->getGroups();
-        $checker = new GroupChecker(new GroupPermissionRepository());
+        $checker = new GroupChecker(new GroupPermissionRepository(), $this->effects);
 
         foreach ($groups as $group) {
             if ($checker->check($name, $group, $permissive, $hard)) {

@@ -24,7 +24,7 @@ class ConditionRegistry
      */
     public function addCondition(ConditionInterface $condition)
     {
-        $this->conditions[$condition->getName()] = $condition;
+        $this->conditions[$condition->getInternalName()] = $condition;
     }
 
     /**

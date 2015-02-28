@@ -2,7 +2,10 @@
 
 namespace Fourum\Effect;
 
-class EffectRegistry
+use Closure;
+use Illuminate\Contracts\Support\Arrayable;
+
+class EffectRegistry implements Arrayable
 {
     /**
      * @var array
@@ -24,7 +27,7 @@ class EffectRegistry
      */
     public function addEffect(EffectInterface $effect)
     {
-        $this->effects[$effect->getName()] = $effect;
+        $this->effects[$effect->getInternalName()] = $effect;
     }
 
     /**
@@ -34,5 +37,22 @@ class EffectRegistry
     public function get($name)
     {
         return $this->effects[$name];
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
+    {
+        return $this->effects;
+    }
+
+    /**
+     * @param Closure $closure
+     * @return array
+     */
+    public function filter(Closure $closure)
+    {
+        return array_filter($this->effects, $closure);
     }
 }

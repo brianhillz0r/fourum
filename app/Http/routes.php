@@ -95,6 +95,7 @@ Route::group(array('prefix' => 'admin', 'before' => 'beforeFilter', 'after' => '
     Route::get('/users/manage/{id}', 'Admin\UsersController@manage');
     Route::post('/users/save', 'Admin\UsersController@save');
     Route::post('/users/permissions/save', 'Admin\UsersController@permissionsSave');
+    Route::post('/users/apply-effect', 'Admin\UsersController@applyEffect');
 
     /**
      * Groups Routes

@@ -2,6 +2,7 @@
 
 namespace Fourum\Permission\Checker;
 
+use Fourum\Effect\EffectRepositoryInterface;
 use Fourum\Permission\PermissibleInterface;
 use Fourum\Permission\Permission;
 use Fourum\Permission\PermissionRepositoryInterface;
@@ -20,17 +21,27 @@ class Checker implements CheckerInterface
     protected $permissible;
 
     /**
+     * @var EffectRepositoryInterface
+     */
+    protected $effects;
+
+    /**
      * @param PermissionRepositoryInterface $permissions
+     * @param EffectRepositoryInterface $effects
      * @param PermissibleInterface $permissible
      */
-    public function __construct(PermissionRepositoryInterface $permissions, PermissibleInterface $permissible = null)
-    {
+    public function __construct(
+        PermissionRepositoryInterface $permissions,
+        EffectRepositoryInterface $effects,
+        PermissibleInterface $permissible = null
+    ) {
         $this->permissions = $permissions;
         $this->permissible = $permissible;
+        $this->effects = $effects;
     }
 
     /**
-     * @param $name
+     * @param string $name
      * @param PermissibleInterface $permissible
      * @param PermissiveInterface $permissive
      * @param bool $hard
@@ -43,6 +54,13 @@ class Checker implements CheckerInterface
         $hard = false
     ) {
         $permission = $this->permissions->getByNameAndPermissible($name, $permissible, $permissive);
+
+        // effects overrule everything else
+        $effects = $this->effects->getEffectsForPermissible($permissible, $name);
+        if (! $effects->isEmpty()) {
+            $effect = $effects->first();
+            return (bool) $effect->getPermissionValue();
+        }
 
         if ($permission && ! (bool) $permission->getValue()) {
             return false;

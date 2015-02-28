@@ -2,8 +2,12 @@
 
 namespace Fourum\Http\Controllers\Admin;
 
+use Fourum\Effect\EffectConfiguration;
+use Fourum\Effect\EffectRegistry;
+use Fourum\Effect\EffectRepositoryInterface;
 use Fourum\Http\Controllers\AdminController;
 use Fourum\Menu\TabbedMenu;
+use Fourum\Model\Effect;
 use Fourum\Permission\Checker\CheckerInterface;
 use Fourum\Permission\Permission;
 use Fourum\Permission\UserPermissionRepositoryInterface;
@@ -37,32 +41,53 @@ class UsersController extends AdminController
 
     /**
      * @param UserPermissionRepositoryInterface $userPermissions
+     * @param EffectRepositoryInterface $effects
+     * @param EffectRegistry $effectsRegistry
      * @param CheckerInterface $permission
      * @param Dispatcher $dispatcher
      * @param int $id
+     * @return \Illuminate\View\View
      */
     public function manage(
         UserPermissionRepositoryInterface $userPermissions,
+        EffectRepositoryInterface $effects,
+        EffectRegistry $effectsRegistry,
         CheckerInterface $permission,
         Dispatcher $dispatcher,
         $id
     ) {
         $user = $this->users->get($id);
+        $this->setTitle($user->getUsername());
         $permissionNames = $userPermissions->getPermissionNames();
 
         $permissions = [];
 
         foreach ($permissionNames as $name) {
-            $permissions[$name] = $permission->checkHard($name, $user);
+            $permissions[$name] = $permission->check($name, $user);
         }
 
         $profileMenu = new TabbedMenu();
         $dispatcher->fire('admin.user.manage.menu', [$profileMenu, $user]);
 
+        $currentEffects = [];
+
+        foreach ($effects->getEffectsForEffectable($user) as $effectModel) {
+            $genericEffect = new \StdClass;
+            $genericEffect->effect = $effectsRegistry->get($effectModel->effect);
+            $genericEffect->effectModel = $effectModel;
+            $currentEffects[$genericEffect->effect->getInternalName()] = $genericEffect;
+        }
+
+        $availableEffects = $effectsRegistry->filter(function ($effect) use ($user, $currentEffects) {
+            return $effect->supports($user) && ! array_key_exists($effect->getInternalName(), $currentEffects);
+        });
+
         $data = [
             'user' => $user,
             'permissions' => $permissions,
-            'menu' => $profileMenu
+            'menu' => $profileMenu,
+            'availableEffects' => $availableEffects,
+            'currentEffects' => $currentEffects
         ];
 
         return view('users.view', $data);
@@ -98,5 +123,25 @@ class UsersController extends AdminController
         }
 
         return redirect('/admin/users/manage/' . $request->get('id'));
+    }
+
+    /**
+     * @param Request $request
+     * @param EffectRegistry $effects
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function applyEffect(Request $request, EffectRegistry $effects)
+    {
+        $user = $this->users->get($request->get('user_id'));
+        $effect = $effects->get($request->get('effect'));
+
+        $config = new EffectConfiguration([
+            'unit' => $request->get('unit'),
+            'length' => $request->get('length')]
+        );
+
+        $effect->apply($user, $config);
+
+        return redirect('/admin/users/manage/' . $user->getId());
     }
 }

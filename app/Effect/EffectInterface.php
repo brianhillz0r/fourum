@@ -12,10 +12,19 @@ interface EffectInterface
 
     /**
      * @param EffectableInterface $effectable
-     * @param EffectConfiguration $config
      * @return bool
      */
-    public function supports(EffectableInterface $effectable, EffectConfiguration $config);
+    public function supports(EffectableInterface $effectable);
+
+    /**
+     * @return string
+     */
+    public function getPermissionName();
+
+    /**
+     * @return string
+     */
+    public function getInternalName();
 
     /**
      * @return string

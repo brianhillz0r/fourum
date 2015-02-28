@@ -27,12 +27,13 @@ class PermissionServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind('Fourum\Permission\Checker\CheckerInterface', function ($app) {
-            $forum          = new ForumChecker(new ForumPermissionRepository());
-            $thread         = new ThreadChecker(new ThreadPermissionRepository());
-            $groupRoaming   = new GroupRoamingChecker(new GroupRoamingPermissionRepository());
-            $group          = new GroupChecker(new GroupPermissionRepository());
-            $userRoaming    = new UserRoamingChecker(new UserRoamingPermissionRepository());
-            $user           = new UserChecker(new UserPermissionRepository());
+            $effects = $app->make('Fourum\Effect\EffectRepositoryInterface');
+            $forum          = new ForumChecker(new ForumPermissionRepository(), $effects);
+            $thread         = new ThreadChecker(new ThreadPermissionRepository(), $effects);
+            $groupRoaming   = new GroupRoamingChecker(new GroupRoamingPermissionRepository(), $effects);
+            $group          = new GroupChecker(new GroupPermissionRepository(), $effects);
+            $userRoaming    = new UserRoamingChecker(new UserRoamingPermissionRepository(), $effects);
+            $user           = new UserChecker(new UserPermissionRepository(), $effects);
 
             /**
              * order is important here:

@@ -162,6 +162,7 @@ return [
 		'Fourum\Theme\ThemeServiceProvider',
 		'Fourum\Providers\ViewComposerServiceProvider',
 		'Fourum\Rule\RuleServiceProvider',
+		'Fourum\Effect\EffectServiceProvider',
 
 		/**
 		 * Package Service Providers

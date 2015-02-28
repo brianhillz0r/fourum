@@ -13,6 +13,11 @@ interface ConditionInterface
     /**
      * @return string
      */
+    public function getInternalName();
+
+    /**
+     * @return string
+     */
     public function getName();
 
     /**

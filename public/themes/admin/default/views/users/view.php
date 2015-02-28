@@ -33,6 +33,7 @@
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#profile" data-toggle="tab">Profile</a></li>
                     <li><a href="#permissions" data-toggle="tab">Permissions</a></li>
+                    <li><a href="#effects" data-toggle="tab">Effects <?= count($currentEffects) ? "(".count($currentEffects).")" : '' ?></a></li>
                     <?php if ($menu->hasItems()): ?>
                     <?php foreach ($menu->getItems() as $item): ?>
                     <li><a href="<?= $item->getTarget() ?>" data-toggle="tab"><?= ucwords($item->getName()) ?></a></li>
@@ -57,6 +58,10 @@
 
                     <div class="tab-pane" id="permissions">
                         <?= view('users.permissions', array('user' => $user, 'permissions' => $permissions)) ?>
+                    </div>
+
+                    <div class="tab-pane" id="effects">
+                        <?= view('users.effects', array('user' => $user, 'availableEffects' => $availableEffects, 'currentEffects' => $currentEffects)) ?>
                     </div>
 
                     <?php if ($menu->hasItems()): ?>
