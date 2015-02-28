@@ -9,7 +9,7 @@
 </div>
 <div class="row">
     <div class="col-md-3">
-        {!! view('settings.sidebar') !!}
+        {!! view('settings.sidebar', ['activeTab' => $activeTab]) !!}
     </div>
     <div class="col-md-9" style="height:1000px;">
         <h4 style="margin-bottom:20px;">{{ ucwords($namespace) }}</h4>

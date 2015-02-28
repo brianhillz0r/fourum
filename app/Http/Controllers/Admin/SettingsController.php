@@ -36,6 +36,7 @@ class SettingsController extends AdminController
 
         $data['settings'] = $settings;
         $data['namespace'] = 'general';
+        $data['activeTab'] = '';
 
         return view('settings.view', $data);
     }
@@ -47,7 +48,11 @@ class SettingsController extends AdminController
     {
         $this->addTitle(ucwords($namespace));
         $settings = $this->settings->getByNamespace($namespace);
-        return view('settings.view', ['settings' => $settings, 'namespace' => $namespace]);
+        return view('settings.view', [
+            'settings' => $settings,
+            'namespace' => $namespace,
+            'activeTab' => $namespace
+        ]);
     }
 
     /**
